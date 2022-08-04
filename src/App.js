@@ -22,15 +22,33 @@ function App() {
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   return (
     <>
-    <div className="table" id="calc">
-    {digits.map((digit) => {
-     return <button onClick={() => {
-      setTotal(total + digit)
-     }} key={digit}>{digit}</button>
-    })}
-    <button onClick={() => setTotal(0)}><b>reset</b></button>
-    <div className="total">Total: {total}</div>
-    </div>
+      <body>
+        <header className="hero">
+          <div className="calc-block">Calculator</div>
+          <div className="clock-block">Clock</div>
+        </header>
+        <div className="calc">
+          {digits.map((digit) => {
+            return (
+              <button
+                onClick={() => {
+                  setTotal(total + digit);
+                }}
+                key={digit}
+              >
+                {digit}
+              </button>
+            );
+          })}
+          <button onClick={() => setTotal(0)}>
+            <b>reset</b>
+          </button>
+          <div className="total">
+            <b>Total: {total}</b>
+          </div>
+        </div>
+      </body>
+
       {/* <div className="table" id="table">
         <div className="timezone-form">
           <select>
