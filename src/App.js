@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import React from 'react';
 const options = [
   {
     label: "PST",
@@ -22,15 +23,34 @@ function App() {
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   return (
     <>
-    <div className="table" id="calc">
-    {digits.map((digit) => {
-     return <button onClick={() => {
-      setTotal(total + digit)
-     }} key={digit}>{digit}</button>
-    })}
-    <button onClick={() => setTotal(0)}><b>reset</b></button>
-    <div className="total">Total: {total}</div>
-    </div>
+      <body>
+        <header className="hero">
+          <button className="calc-block" onClick={() => {
+            console.log('calculator')
+          }}><b>Calculator</b></button>
+        </header>
+        <div className="calc">
+          {digits.map((digit) => {
+            return (
+              <button
+                onClick={() => {
+                  setTotal(total + digit);
+                }}
+                key={digit}
+              >
+                {digit}
+              </button>
+            );
+          })}
+          <button onClick={() => setTotal(0)}>
+            <b>reset</b>
+          </button>
+          <div className="total">
+            <b>Total: {total}</b>
+          </div>
+        </div>
+      </body>
+
       {/* <div className="table" id="table">
         <div className="timezone-form">
           <select>
