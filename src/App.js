@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import React from 'react';
 const options = [
   {
     label: "PST",
@@ -24,8 +25,9 @@ function App() {
     <>
       <body>
         <header className="hero">
-          <div className="calc-block">Calculator</div>
-          <div className="clock-block">Clock</div>
+          <button className="calc-block" onClick={() => {
+            console.log('calculator')
+          }}><b>Calculator</b></button>
         </header>
         <div className="calc">
           {digits.map((digit) => {

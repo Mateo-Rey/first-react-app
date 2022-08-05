@@ -56,16 +56,37 @@ div.calc {
 }
 
 header.hero {
-  height: 50pt;
+  height: 75px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #355c7d;
+  background-color: #676767;
+  border: solid 15px cornsilk;
+  border-style:ridge;
 }
 
-div.calc-block {
- 
+button.calc-block {
+ width:150px;
+ height:40px;
+ padding: 10px;
+ background-color: #355c7d;
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ color: black;
+ border: 5px solid cornsilk; 
+}
 
+button.clock {
+  width:150px;
+ height:40px;
+ padding: 10px;
+ background-color: #355c7d;
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ color: black;
+ border: 5px solid cornsilk; 
 }
 
 #US-E {
