@@ -3,84 +3,98 @@ import { useState } from "react";
 import React from "react";
 
 function App() {
-  const [total, setTotal] = useState(0);
-  let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-  let numarr = []
+  let [total, setTotal] = useState(0);
+  let digits = [0,1,2,3,4,5,6,7,8,9]
+  let [num1, setNum1] = useState("");
+  let [num2, setNum2] = useState("");
+  let [operator,setOperator] = useState("") 
   return (
     <>
-     
-        <header className="hero">
-          <button
-            className="calc-block"
-            onClick={() => {
-              console.log("calculator");
-            }}>
-            <b>Calculator</b>
-          </button>
-        </header>
-     
+      <header className="hero">
+        <button
+          className="calc-block"
+          onClick={() => {
+            console.log("calculator");
+          }}
+        >
+          <b>Calculator</b>
+        </button>
+      </header>
 
-
-        
-        <body>
+  
+        <div className="calc-header">
+          <div className="total">
+          {total || ""} 
+          {operator === "" && num1}
+          {!total && operator !== "" && num2}
+           </div>
+        </div>
         <div className="calc">
           {digits.map((digit) => {
             return (
-              <button onClick={() => {
-                numarr.push(digit)
-              }} key={digit}>
+              <button
+                onClick={() => { 
+                  if (operator === "")
+                   {
+                    setNum1(num1 + String(digit))
+                  } else {setNum2(num2 + String(digit))}
+                }}
+                key={digit}
+              >
                 {digit}
               </button>
             );
           })}
-          <button onClick={() => {
-            let sum = 0
-            for (let i = 0; i < numarr.length; i++) {
-              sum += numarr[i]
-            }
-            setTotal(total + sum)
-          }}>
+          <button
+            onClick={() => {
+              setOperator('add')
+            }}
+          >
             <b>add</b>
           </button>
+          <button
+            onClick={() => {
+              setTotal(0)
+              setNum1('')
+              setNum2('')
+              setOperator('');
+            }}
+          >
+            <b>reset</b>
+          </button>
+          <button
+            onClick={() => {
+            setOperator('multiply')
+            }}
+          >
+            <b>multiply</b>
+          </button>
+          <button
+            onClick={() => {
+             setOperator('divide')
+            }}
+          >
+            <b>divide</b>
+          </button>
+          <button
+            onClick={() => {
+              setOperator('subtract')
+            }}
+          >
+            <b>subtract</b>
+          </button>
           <button onClick={() => {
-            setTotal(0)
-          }}><b>reset</b></button>
-          <button onClick={() => {
-            let sum = 0
-            for (let i = 0; i <numarr.length; i++) {
-              sum += numarr[i]
+            if (operator === 'add') {
+              setTotal(total += parseInt(num1) + parseInt(num2))
+            } else if (operator === 'multiply') {
+              setTotal(total += parseInt(num1) * parseInt(num2))
+            } else if (operator === 'divide') {
+              setTotal(total += parseInt(num1) / parseInt(num2))
+            } else if (operator === 'subtract') {
+              setTotal(total += parseInt(num1) - parseInt(num2))
             }
-            setTotal(total * sum)
-          }}><b>multiply</b></button>
-          <button onClick={() => {
-            let sum = 0
-            for (let i = 0; i <numarr.length; i++) {
-              sum += numarr[i]
-            }
-            setTotal(total / sum)
-          }}><b>divide</b></button>
-          <button onClick={() => {
-            let sum = 0
-            for (let i = 0; i <numarr.length; i++) {
-              sum += numarr[i]
-            }
-            setTotal(total - sum)
-          }}><b>subtract</b></button>
-          <div className="total">
-            <b>Total: {total}</b>
-          </div>
+          }}>equals</button>
         </div>
-      </body>
-
-      {/* <div className="table" id="table">
-        <div className="timezone-form">
-          <select>
-            {options.map((option) => (
-              <option value={option.value}>{option.label}</option>
-            ))}
-          </select>
-        </div>
-      </div> */}
     </>
   );
 }
