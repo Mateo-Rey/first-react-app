@@ -8,6 +8,7 @@ function App() {
   let [num1, setNum1] = useState("");
   let [num2, setNum2] = useState("");
   let [operator,setOperator] = useState("") 
+  let [counter, setCounter] = useState(0)
   return (
     <>
       <header className="hero">
@@ -24,10 +25,10 @@ function App() {
   
         <div className="calc-header">
           <div className="total">
-          {total || ""} 
-          {operator === "" && num1}
-          {!total && operator !== "" && num2}
+          Total: {total || ''}
            </div>
+           <div className="total"> Current Number:{operator === "" && num1}
+          {!total && operator !== "" && num2}</div>
         </div>
         <div className="calc">
           {digits.map((digit) => {
@@ -47,7 +48,12 @@ function App() {
           })}
           <button
             onClick={() => {
-              setOperator('add')
+              if (counter == 0) {
+                setOperator('add')
+                  }else if (counter > 0) {
+                    setTotal(total + parseInt(num1))
+                    setNum1('')
+                  }
             }}
           >
             <b>add</b>
@@ -57,28 +63,44 @@ function App() {
               setTotal(0)
               setNum1('')
               setNum2('')
-              setOperator('');
+              setOperator('')
+              setCounter(0);
             }}
           >
             <b>reset</b>
           </button>
           <button
             onClick={() => {
+              if (counter == 0) {
             setOperator('multiply')
+              }else if (counter > 0) {
+                setTotal(total * parseInt(num1))
+                setNum1('')
+              }
             }}
           >
             <b>multiply</b>
           </button>
           <button
             onClick={() => {
-             setOperator('divide')
+              if (counter == 0) {
+                setOperator('divide')
+                  }else if (counter > 0) {
+                    setTotal(total / parseInt(num1))
+                    setNum1('')
+                  }
             }}
           >
             <b>divide</b>
           </button>
           <button
             onClick={() => {
-              setOperator('subtract')
+              if (counter == 0) {
+                setOperator('subtract')
+                  }else if (counter > 0){
+                    setTotal(total - parseInt(num1))
+                    setNum1('')
+                  }
             }}
           >
             <b>subtract</b>
@@ -86,12 +108,28 @@ function App() {
           <button onClick={() => {
             if (operator === 'add') {
               setTotal(total += parseInt(num1) + parseInt(num2))
+              setNum1('')
+              setNum2('')
+              setCounter(counter += 1)
+              setOperator('')
             } else if (operator === 'multiply') {
               setTotal(total += parseInt(num1) * parseInt(num2))
+              setNum1('')
+              setNum2('')
+              setCounter(counter += 1)
+              setOperator('')
             } else if (operator === 'divide') {
               setTotal(total += parseInt(num1) / parseInt(num2))
+              setNum1('')
+              setNum2('')
+              setCounter(counter += 1)
+              setOperator('')
             } else if (operator === 'subtract') {
               setTotal(total += parseInt(num1) - parseInt(num2))
+              setNum1('')
+              setNum2('')
+              setCounter(counter += 1)
+              setOperator('')
             }
           }}>equals</button>
         </div>
