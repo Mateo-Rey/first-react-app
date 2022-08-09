@@ -4,7 +4,7 @@ import React from "react";
 
 function App() {
   let [total, setTotal] = useState(0);
-  let digits = [0,1,2,3,4,5,6,7,8,9]
+  let digits = [1,2,3,4,5,6,7,8,9,0]
   let [num1, setNum1] = useState("");
   let [num2, setNum2] = useState("");
   let [operator,setOperator] = useState("") 
@@ -22,7 +22,7 @@ function App() {
         </button>
       </header>
 
-  
+        <div className="calculator-whole">
         <div className="calc-header">
           <div className="total">
           Total: {total || ''}
@@ -46,7 +46,9 @@ function App() {
               </button>
             );
           })}
-          <button
+          </div>
+          <div className="operations">
+          <button className="operator"
             onClick={() => {
               if (counter == 0) {
                 setOperator('add')
@@ -56,9 +58,9 @@ function App() {
                   }
             }}
           >
-            <b>add</b>
+            <b>+</b>
           </button>
-          <button
+          <button 
             onClick={() => {
               setTotal(0)
               setNum1('')
@@ -69,7 +71,7 @@ function App() {
           >
             <b>reset</b>
           </button>
-          <button
+          <button className="operator"
             onClick={() => {
               if (counter == 0) {
             setOperator('multiply')
@@ -79,9 +81,9 @@ function App() {
               }
             }}
           >
-            <b>multiply</b>
+            <b>*</b>
           </button>
-          <button
+          <button className="operator"
             onClick={() => {
               if (counter == 0) {
                 setOperator('divide')
@@ -91,9 +93,9 @@ function App() {
                   }
             }}
           >
-            <b>divide</b>
+            <b>÷</b>
           </button>
-          <button
+          <button className="operator"
             onClick={() => {
               if (counter == 0) {
                 setOperator('subtract')
@@ -103,9 +105,9 @@ function App() {
                   }
             }}
           >
-            <b>subtract</b>
+            <b>-</b>
           </button>
-          <button onClick={() => {
+          <button className="operator" onClick={() => {
             if (operator === 'add') {
               setTotal(total += parseInt(num1) + parseInt(num2))
               setNum1('')
@@ -131,7 +133,8 @@ function App() {
               setCounter(counter += 1)
               setOperator('')
             }
-          }}>equals</button>
+          }}>=</button>
+        </div>
         </div>
     </>
   );
