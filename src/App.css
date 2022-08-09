@@ -25,7 +25,8 @@ div.calc {
   flex-wrap: wrap;
   border: 10px solid peachpuff;
   margin: 5px;
-  align-content: space-around;
+  align-items: center;
+  justify-content: center;
   border-style: double;
   top: 250px;
   left: 500px;
@@ -91,6 +92,8 @@ div.operations {
   width: 500px;
   height: 150px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   background-color: #355c7d;
   position: absolute;
   top: 719px;
